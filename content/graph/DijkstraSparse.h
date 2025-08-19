@@ -19,7 +19,7 @@
 
 const ll INF = 1000000000;
 
-void dijkstra(const vector<vector<pii>>& adj, ll s, vi& d, vi& p) {
+void dijkstraSparse(const vector<vector<pii>>& adj, ll s, vi& d, vi& p) {
     ll n = (ll)adj.size();
     d.assign(n, INF);
     p.assign(n, -1);
