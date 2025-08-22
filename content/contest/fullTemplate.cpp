@@ -15,21 +15,23 @@ using ll = long long;
 typedef vector<ll> vi;
 typedef pair<ll, ll> pii;
 
-template <typename T>
-ostream &operator<<(ostream &os, const vector<T> &v) {
-  os << "[";
-  forn(i, sz(v)) {
-    if (i > 0) os << ", ";
-    os << v[i];
-  }
-  os << "]";
-  return os;
-}
-
 template <typename T, typename U>
 ostream &operator<<(ostream &os, const pair<T, U> &p) {
   os << "(" << p.first << ", " << p.second << ")";
   return os;
+}
+
+template <typename T>
+ostream &operator<<(ostream &os, const vector<T> &v) { 
+  os << "[";
+  bool first = true;
+  for (auto& x : v) { 
+    if (!first) os << ", "; 
+    first = false; 
+    os << x; 
+  }
+  os << "]"; 
+  return os; 
 }
 
 inline void fastIO() {
@@ -38,6 +40,6 @@ inline void fastIO() {
 }
 
 int main() { 
-  fastIO(); 
-  
+  fastIO();
+
 }

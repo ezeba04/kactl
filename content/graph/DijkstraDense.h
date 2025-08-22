@@ -11,7 +11,7 @@
  *  // adj[u].push_back({v, w});
  *  vi d, p; dijkstraDense(adj, src, d, p);
  *  // Reconstruccion camino a v:
- *  // for (ll x = v; x != -1; x = p[x]) path.push_back(x); reverse(path.begin(), path.end());
+ *  // for (ll x = v; x != -1; x = p[x]) path.push_back(x); reverse(all(path));
  * Time: $O(N^2 + M)$
  * Memory: O(N)
  * Status: Untested

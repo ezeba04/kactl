@@ -9,6 +9,7 @@
     \kactlimport{BinarySearch.h}
     \kactlimport{TernarySearch.h}
     \kactlimport{LIS.h}
+    \kactlimport{LCS.h}
     \kactlimport{Kadane.h}
     \kactlimport{FastKnapsack.h}
 
@@ -30,27 +31,37 @@
     Busca un valor en un rango ordenado.
     \item \verb|partition_point(all(vec), pred);| \\
     Retorna el primer elemento que no satisface un predicado en un rango particionado.
+    \item \verb|lexicographical_compare(f1,l1,f2,l2);| \\
+    Compara \verb|[f1,l1)| y \verb|[f2,l2)| en orden lexicográfico.
+    \item \verb|accumulate(f, l, init[, op]);| \\
+    Reduce \verb|[f,l)| comenzando en \verb|init| (suma por defecto).
+    \item \verb|inner_product(f1, l1, f2, init);| \\
+    Producto punto de dos rangos más \verb|init|.
+    \item \verb|partial_sum(f, l, out[, op]);| \\
+    Sumas parciales (o acumulación con operador).
     \item Generar números aleatorios y permutar un vector:
 \begin{lstlisting}
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-vi p(n); iota(all(p), 0);
-shuffle(all(p), rng); // Permutacion aleatoria
-// Para un entero en [a, b]:
-uniform_int_distribution<int>(a, b)(rng);
+    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+    vi p(n); iota(all(p), 0);
+    shuffle(all(p), rng); // Permutacion aleatoria
+    // Para un entero en [a, b]:
+    uniform_int_distribution<int>(a, b)(rng);
 \end{lstlisting}
 \end{itemize}
 
 \section{Input/Output}
-	\kactlimport{ReadUntillEOF.h}
-	\subsection{Formatear salida}
-	\begin{itemize}
-		\item \verb|cout << fixed << setprecision(8);| \\
-		Imprime un número de punto flotante con 8 decimales.
-		\item \verb|numeric_limits<double>::digits10 + 1| \\
-		Precisión para imprimir un \texttt{double} sin pérdida de información.
-		\item \verb|cout << setw(6) << setfill('0');| \\
-		Imprime un número con un ancho de 6, rellenando con ceros a la izquierda.
-	\end{itemize}
+    \kactlimport{ReadUntillEOF.h}
+    \subsection{Formatear salida}
+    \begin{itemize}
+        \item \verb|cout << fixed << setprecision(8);| \\
+        Imprime un número de punto flotante con 8 decimales.
+        \item \verb|numeric_limits<double>::digits10 + 1| \\
+        Precisión para imprimir un \texttt{double} sin pérdida de información.
+        \item \verb|cout << setw(6) << setfill('0');| \\
+        Imprime un número con un ancho de 6, rellenando con ceros a la izquierda.
+        \item \verb|cin >> noskipws;| hace que \texttt{cin} no salte espacios en blanco.
+        \item \verb|cin >> skipws;| vuelve a activar el salto de espacios (por defecto).
+    \end{itemize}
 
 \section{Debugging tricks}
     \kactlimport{ExpandStack.h}
@@ -69,6 +80,7 @@ uniform_int_distribution<int>(a, b)(rng);
             \item \verb@for (int x = m; x; ) { --x &= m; ... }@ loops over all subset masks of \texttt{m} (except \texttt{m} itself).
             \item \verb@c = x&-x, r = x+c; (((r^x) >> 2)/c) | r@ is the next number after \texttt{x} with the same number of bits set.
             \item \verb@rep(b,0,K) rep(i,0,(1 << K))@ \\ \verb@  if (i & 1 << b) D[i] += D[i^(1 << b)];@ computes all sums of subsets.
+            \item Para \texttt{bitset} \verb|bs|: \verb|bs._Find_next(idx)| retorna el primer bit en 1 con índice mayor que \texttt{idx}.
             \item \verb@__builtin_ffs(x)@ retorna 1 + índice (0-based) del bit 1 menos significativo en \texttt{x}, o 0 si \texttt{x==0}.
             \item \verb@__builtin_clz(x)@ cuenta ceros iniciales (leading) en \texttt{x} (usar tipo \texttt{unsigned}); comportamiento indefinido si \texttt{x==0}.
             \item \verb@__builtin_ctz(x)@ cuenta ceros finales (trailing) en \texttt{x} (usar tipo \texttt{unsigned}); indefinido si \texttt{x==0}.
